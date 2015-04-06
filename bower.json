@@ -1,0 +1,21 @@
+{
+  "name": "Zik3D",
+  "version": "0.0.1",
+  "authors": [
+    "wcastand <wcastand@gmail.com>"
+  ],
+  "description": "Zik Player un Three Js",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "three.js": "~0.70.0",
+    "audiocontext-polyfill": "~0.0.2",
+    "stats.js": "*"
+  }
+}
