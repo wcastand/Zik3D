@@ -3,6 +3,7 @@ var shape;
 var setup;
 var stats;
 var gui;
+var playButton;
 
 window.requestAnimationFrame = (function(){
   return window.requestAnimationFrame  ||
@@ -24,6 +25,45 @@ document.addEventListener('DOMContentLoaded', function(){
 
   shape.init();
 
+  initGUI();
+  initStats();
+  initDropZone();
+  initControls();
+});
+
+function initControls(){
+  playButton = document.querySelector('#play');
+  playButton.style.visibility = "hidden";
+  playButton.addEventListener('click', function(){
+    if(setup){
+      if(this.classList.contains('icon-play')){
+        player.play();
+        this.classList.remove('icon-play')
+        this.classList.add('icon-stop');
+      }
+      else{
+        player.stop();
+        this.classList.remove('icon-stop')
+        this.classList.add('icon-play');
+      }
+    }
+  })
+}
+
+function initDropZone(){
+  var dropZone = document.querySelector('.dropzone');
+  dropZone.addEventListener('dragover', handleDragOver, false);
+  dropZone.addEventListener('drop', handleFileSelect, false);
+}
+
+function initStats(){
+  stats.domElement.style.position = 'absolute';
+  stats.domElement.style.right = '0px';
+  stats.domElement.style.bottom = '0px';
+  document.body.appendChild( stats.domElement );
+}
+
+function initGUI(){
   gui.addColor(shape, 'firstColor');
   gui.addColor(shape, 'secondColor');
   gui.add(shape, 'typeTransform', { Scale: 0, Position: 1 });
@@ -38,16 +78,7 @@ document.addEventListener('DOMContentLoaded', function(){
   controllerNbY.onFinishChange(function(value) {shape.nbY = value; shape.initShape();});
   controllerSpaceX.onFinishChange(function(value) {shape.spaceX = value; shape.initShape();});
   controllerSpaceY.onFinishChange(function(value) {shape.spaceY = value; shape.initShape();});
-
-  stats.domElement.style.position = 'absolute';
-  stats.domElement.style.right = '0px';
-  stats.domElement.style.bottom = '0px';
-  document.body.appendChild( stats.domElement );
-
-  var dropZone = document.querySelector('.dropzone');
-  dropZone.addEventListener('dragover', handleDragOver, false);
-  dropZone.addEventListener('drop', handleFileSelect, false);
-});
+}
 
 function handleFileSelect(evt) {
   evt.stopPropagation();
@@ -65,6 +96,9 @@ function handleFileSelect(evt) {
         player.decodeData(e.target.result, function(){
           setup = true;
           document.querySelector('.container').style.visibility = "hidden";
+          playButton.style.visibility = "visible";
+          playButton.classList.remove('icon-play')
+          playButton.classList.add('icon-stop');
         });
       };
     })(f);
