@@ -4,7 +4,6 @@ var Audio = function(){
 	this.source = '';
 	this.fft = '';
 	this.samples = 2048;
-	this.volumeNode  = '';
 	this.played = false;
 	this.startTime = 0;
 	this.pauseTime = 0;
@@ -26,7 +25,6 @@ Audio.prototype = {
 		this.startTime = this.context.currentTime;
 
 		this.source = this.context.createBufferSource();
-		this.volumeNode = this.context.createGain();
 		this.fft = this.context.createAnalyser();
 		var compressor = this.context.createDynamicsCompressor();
 
@@ -37,11 +35,6 @@ Audio.prototype = {
 
 		this.source.connect(this.fft);
 		this.fft.connect(this.context.destination);
-
-		this.source.connect(this.volumeNode);
-		this.volumeNode.connect(this.context.destination);
-
-		this.volumeNode.gain.value = 0;
 
 		this.played = true;
 		this.source.start(0, this.pauseTime % this.buffer.duration);
