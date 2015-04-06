@@ -41,7 +41,7 @@ Audio.prototype = {
 		this.source.connect(this.volumeNode);
 		this.volumeNode.connect(this.context.destination);
 
-		this.volumeNode.gain.value = 1;
+		this.volumeNode.gain.value = 0;
 
 		this.played = true;
 		this.source.start(0, this.pauseTime % this.buffer.duration);
