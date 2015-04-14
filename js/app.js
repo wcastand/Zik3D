@@ -1,3 +1,19 @@
+Skip to content
+ This repository
+Explore
+Gist
+Blog
+Help
+@wcastand wcastand
+
+ Unwatch 1
+  Star 0
+  Fork 0
+wcastand/Zik3D
+ branch: master  Zik3D/js/app.js
+@wcastandwcastand 7 minutes ago Changes to be committed:
+1 contributor
+RawBlameHistory     125 lines (111 sloc)  3.839 kb
 var player;
 var shape;
 var setup;
@@ -69,15 +85,21 @@ function initGUI(){
   gui.add(shape, 'typeTransform', { Scale: 0, Position: 1 });
   var controllerSpaceX = gui.add(shape, 'spaceX');
   var controllerSpaceY = gui.add(shape, 'spaceY');
-  var controllerSize = gui.add(shape, 'size');
-  var controllerNbX = gui.add(shape, 'nbX');
-  var controllerNbY = gui.add(shape, 'nbY');
+  var controllerSize   = gui.add(shape, 'size');
+  var controllerNbX    = gui.add(shape, 'nbX');
+  var controllerNbY    = gui.add(shape, 'nbY');
+  var controllerScaleMin  = gui.add(shape, 'scaleMin');
+  var controllerScaleMax  = gui.add(shape, 'scaleMax');
+  var controllerPosition  = gui.add(shape, 'position');
 
   controllerSize.onFinishChange(function(value) {shape.size = value; shape.initShape();});
   controllerNbX.onFinishChange(function(value) {shape.nbX = value; shape.initShape();});
   controllerNbY.onFinishChange(function(value) {shape.nbY = value; shape.initShape();});
   controllerSpaceX.onFinishChange(function(value) {shape.spaceX = value; shape.initShape();});
   controllerSpaceY.onFinishChange(function(value) {shape.spaceY = value; shape.initShape();});
+  controllerScaleMin.onFinishChange(function(value) {shape.scaleMin = value; shape.initShape();});
+  controllerScaleMax.onFinishChange(function(value) {shape.scaleMax = value; shape.initShape();});
+  controllerPosition.onFinishChange(function(value) {shape.position = value; shape.initShape();});
 }
 
 function handleFileSelect(evt) {
@@ -116,3 +138,5 @@ window.onresize = function(evt){
   shape = new threejs();
   shape.init();
 }
+Status API Training Shop Blog About
+© 2015 GitHub, Inc. Terms Privacy Security Contact
