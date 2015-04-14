@@ -8,6 +8,9 @@ threejs.prototype.init = function init() {
   this.size = 12;
   this.spaceX = 20;
   this.spaceY = 20;
+  this.scaleMin = 1;
+  this.scaleMax = 4;
+  this.position = 20;
   this.typeTransform = 0;//0 is scale - 1 is position
   this.scene = new THREE.Scene();
   this.camera();
@@ -86,13 +89,23 @@ threejs.prototype.render = function render() {
         this.myArray.children[i].material.color.set(newColor);
 
         if(this.typeTransform == 0){
-          var newScale = newRange(value, minValue, maxValue, 1,3);
+          var newScale = newRange(value, minValue, maxValue, this.scaleMin,this.scaleMax);
           this.myArray.children[i].position.setY(0);
+          var old_scale = this.myArray.children[i].scale.y;
+          if(old_scale - newScale > .3)
+            newScale = old_scale - .3;
+          else if(old_scale - newScale < -.3)
+            newScale = old_scale + .3;
           this.myArray.children[i].scale.setY(newScale);
         }
         else{
-          var newPosition = newRange(value, minValue, maxValue, 1,20);
+          var newPosition = newRange(value, minValue, maxValue, 1,this.position);
           this.myArray.children[i].scale.setY(1);
+          var old_position = this.myArray.children[i].position.y;
+          if(old_position - newPosition > 3)
+            newPosition = old_position - 3;
+          else if(old_position - newPosition < -3)
+            newPosition = old_position + 3;
           this.myArray.children[i].position.setY(newPosition);
         }
       }
