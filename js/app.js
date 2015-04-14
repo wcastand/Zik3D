@@ -1,19 +1,3 @@
-Skip to content
- This repository
-Explore
-Gist
-Blog
-Help
-@wcastand wcastand
-
- Unwatch 1
-  Star 0
-  Fork 0
-wcastand/Zik3D
- branch: master  Zik3D/js/app.js
-@wcastandwcastand 7 minutes ago Changes to be committed:
-1 contributor
-RawBlameHistory     125 lines (111 sloc)  3.839 kb
 var player;
 var shape;
 var setup;
@@ -138,5 +122,3 @@ window.onresize = function(evt){
   shape = new threejs();
   shape.init();
 }
-Status API Training Shop Blog About
-© 2015 GitHub, Inc. Terms Privacy Security Contact
